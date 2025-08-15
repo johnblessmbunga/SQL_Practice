@@ -1,3 +1,4 @@
+USE sakila;
 WITH rating_counts AS (
     SELECT 
         a.actor_id,
