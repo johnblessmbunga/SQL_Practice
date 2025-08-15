@@ -1,0 +1,39 @@
+SELECT 
+    'Staff' AS role,
+    staff_id AS id,
+    CONCAT(first_name, ' ', last_name) AS full_name,
+    address.address AS street_address,
+    country.country AS country,
+    address.phone AS phone,
+    staff.email As email
+   
+FROM 
+    staff
+JOIN 
+    address ON staff.address_id = address.address_id
+JOIN 
+    city ON address.city_id = city.city_id
+JOIN 
+    country ON city.country_id = country.country_id
+
+UNION ALL
+
+SELECT 
+    'Customer' AS role,
+    customer_id AS id,
+    CONCAT(first_name, ' ', last_name) AS full_name,
+    address.address AS street_address,
+    country.country AS country,
+    address.phone AS phone,
+    customer.email As email
+FROM 
+    customer
+JOIN 
+    address ON customer.address_id = address.address_id
+JOIN 
+    city ON address.city_id = city.city_id
+JOIN 
+    country ON city.country_id = country.country_id
+
+ORDER BY 
+    role desc, full_name;
